@@ -4,6 +4,7 @@
 #include "bin_search_tree.h"
 #include <vector>
 #include "utils.h"
+#include "breadth_first_search.h"
 using namespace std;
 
 void generateRandomArray(int* empty, int length){
@@ -29,6 +30,8 @@ void testCase(vector<int> nodeElements){
 	cout << "\n";
 	cout << "In-order Traversal: ";
 	in_order_tree_walk(&tree);
+	cout << "Breadth-First Traversal: ";
+	bfs_binary_tree(&tree);
 	tree = NULL;
 	delete[] nodes;
 	cout << "\n";
