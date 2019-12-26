@@ -8,7 +8,7 @@ RM = rm
 default: bin_search_tree
 
 bin_search_tree: bin_search_tree_implementor.o bin_search_tree.o breadth_first_search.o treeUtils.o utils.o
-	$(CC)  $(CFLAGS) -o bin_search_tree bin_search_tree_implementor.o bin_search_tree.o breadth_first_search.o treeUtils.o utils.o
+	$(CC)  $(CFLAGS) -o bin/bin_search_tree bin_search_tree_implementor.o bin_search_tree.o breadth_first_search.o treeUtils.o utils.o
 
 bin_search_tree_implementor.o: bin_search_tree_implementor.cpp bin_search_tree.h ../../IOutils/utils.h ../../Algorithms/Graph_Traversals/breadth_first_search.h
 	$(CC) $(I1) $(I2) $(I3) $(CFLAGS) -c bin_search_tree_implementor.cpp
@@ -26,4 +26,4 @@ utils.o: ../../IOutils/utils.cpp ../../IOutils/utils.h
 	$(CC) $(I1) $(I2) $(CFLAGS) -c ../../IOutils/utils.cpp 
 
 clean:
-	$(RM) bin_search_tree *.o
+	$(RM) bin/bin_search_tree *.o

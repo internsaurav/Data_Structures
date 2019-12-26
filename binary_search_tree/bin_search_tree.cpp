@@ -66,3 +66,14 @@ node* tree_maximum(node** root){
 
 	return tree_max;
 }
+
+node* tree_search_iterative(int k, node** root){
+	if(*root == NULL)
+		return NULL;
+
+	node* found_node = *root;
+	while(found_node != NULL && found_node->key != k){
+		found_node = (k <= found_node->key) ? found_node->left : found_node->right;
+	}
+	return found_node;
+}
