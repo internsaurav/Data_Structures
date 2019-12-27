@@ -8,5 +8,5 @@ void in_order_tree_walk(node** root);
 node* tree_minimum(node** root);
 node* tree_maximum(node** root);
 node* tree_search_iterative(int k, node** root);
-
+node* successor(node* z);
 #endif

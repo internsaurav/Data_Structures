@@ -77,3 +77,26 @@ node* tree_search_iterative(int k, node** root){
 	}
 	return found_node;
 }
+
+node* successor(node* z){
+	if(z == NULL)
+		return NULL;
+
+	if(z->right != NULL)
+		return tree_minimum(&(z->right));
+
+	if(z->p == NULL)
+		return NULL;
+
+	node* y1 = z->p;
+	node* y2 = z;
+	while(y1!= NULL && y1->left != y2){
+		y2=y1;
+		y1 = y1->p;
+	}
+	return y1;
+}
+
+node* predecessor(node* z){
+	return NULL;
+}
