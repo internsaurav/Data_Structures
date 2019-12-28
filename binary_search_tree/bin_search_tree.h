@@ -9,4 +9,6 @@ node* tree_minimum(node** root);
 node* tree_maximum(node** root);
 node* tree_search_iterative(int k, node** root);
 node* successor(node* z);
+node* predecessor(node* z);
+void tree_delete(node** root, node* z);
 #endif

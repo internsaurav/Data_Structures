@@ -266,6 +266,159 @@ void successor_test_cases(){
 	resetTestingParameters();
 }
 
+bool tree_equal(node* root1, node* root2){
+	if(root1 == NULL && root2 == NULL)
+		return true;
+
+	if(root1 == NULL || root2 == NULL)
+		return false;
+
+	return ((root1->key == root2->key) &&  tree_equal(root1->left, root2->left) && tree_equal(root1->right, root2->right)); 
+}
+
+void delete_test(vector<int> nodeElements, int idxOfElmToDelete, int idxOfSuccessor){
+	node* tree = NULL;
+	node* treeWithoutDeletedElm = NULL;
+	node* nodes = NULL;
+	node* nodes2 = NULL;
+
+	if(nodeElements.size() > 0){
+		nodes = new node[nodeElements.size()];
+		nodes2 = new node[nodeElements.size()];
+		node* elmToDelete = NULL;
+
+		for (int j=0; j < (int)nodeElements.size(); j++){
+			nodes[j] = {nodeElements.at(j), NULL, NULL, NULL};
+			tree_insert(&tree, &nodes[j]);
+			if(j == idxOfElmToDelete){
+				elmToDelete = &nodes[j];
+			}
+		}
+
+		if(idxOfSuccessor == -1){
+			nodeElements.erase(nodeElements.begin()+idxOfElmToDelete);
+		} else {
+			nodeElements.at(idxOfElmToDelete) = nodeElements.at(idxOfSuccessor);
+			nodeElements.erase(nodeElements.begin()+idxOfSuccessor);
+		}
+
+		for (int j=0; j < (int)nodeElements.size(); j++){
+			nodes2[j] = {nodeElements.at(j), NULL, NULL, NULL};
+			tree_insert(&treeWithoutDeletedElm, &nodes2[j]);
+		}
+
+		cout << "Breadth-First Traversals before: ";
+		bfs_binary_tree(&tree);
+		cout << "\n";
+
+		tree_delete(&tree, elmToDelete);
+	}
+	
+	cout << "Breadth-First Traversals After: ";
+	bfs_binary_tree(&tree);
+	cout << "\n";
+	cout << (tree_equal(tree, treeWithoutDeletedElm) == true ? "Passed\n" : "Failed\n");
+
+	if(nodeElements.size() > 0){
+		tree = NULL;
+		treeWithoutDeletedElm=NULL;
+		delete[] nodes;
+		delete[] nodes2;
+	}
+}
+
+void delete_test_cases(){
+	int caseNum = 0;
+	int idxOfElmToDelete= -1;
+	int idxOfSuccessor = -1;
+	vector<int> nodeElements;
+	auto resetTestingParameters = [&](){
+    nodeElements.clear();
+    idxOfElmToDelete = -1;
+    idxOfSuccessor = -1;
+  };
+
+	cout << "Case " << ++caseNum << ": ";
+	// nodeElements.push_back(5);
+	delete_test(nodeElements, idxOfElmToDelete, idxOfSuccessor);
+	resetTestingParameters();
+
+	cout << "Case " << ++caseNum << ": ";
+	nodeElements.push_back(5);
+	idxOfElmToDelete = 0;
+	delete_test(nodeElements, idxOfElmToDelete, idxOfSuccessor);
+	resetTestingParameters();
+
+	cout << "Case " << ++caseNum << ": ";
+	nodeElements.push_back(5);
+	nodeElements.push_back(6);
+	idxOfElmToDelete = 0;
+	idxOfSuccessor = 1;
+	delete_test(nodeElements, idxOfElmToDelete, idxOfSuccessor);
+	resetTestingParameters();
+
+	cout << "Case " << ++caseNum << ": ";
+	nodeElements.push_back(5);
+	nodeElements.push_back(6);
+	idxOfElmToDelete = 1;
+	delete_test(nodeElements, idxOfElmToDelete, idxOfSuccessor);
+	resetTestingParameters();
+
+	cout << "Case " << ++caseNum << ": ";
+	nodeElements.push_back(5);
+	nodeElements.push_back(4);
+	nodeElements.push_back(20);
+	nodeElements.push_back(7);
+	nodeElements.push_back(30);
+	nodeElements.push_back(23);
+	nodeElements.push_back(35);
+	nodeElements.push_back(26);
+	idxOfElmToDelete = 1;
+	delete_test(nodeElements, idxOfElmToDelete, idxOfSuccessor);
+	resetTestingParameters();
+
+	cout << "Case " << ++caseNum << ": ";
+	nodeElements.push_back(5);
+	nodeElements.push_back(4);
+	nodeElements.push_back(20);
+	nodeElements.push_back(7);
+	nodeElements.push_back(30);
+	nodeElements.push_back(23);
+	nodeElements.push_back(35);
+	nodeElements.push_back(26);
+	idxOfElmToDelete = 3;
+	delete_test(nodeElements, idxOfElmToDelete, idxOfSuccessor);
+	resetTestingParameters();
+
+	cout << "Case " << ++caseNum << ": ";
+	nodeElements.push_back(5);
+	nodeElements.push_back(4);
+	nodeElements.push_back(20);
+	nodeElements.push_back(7);
+	nodeElements.push_back(30);
+	nodeElements.push_back(23);
+	nodeElements.push_back(35);
+	nodeElements.push_back(26);
+	idxOfElmToDelete = 5;
+	idxOfSuccessor = 7;
+	delete_test(nodeElements, idxOfElmToDelete, idxOfSuccessor);
+	resetTestingParameters();
+
+	cout << "Case " << ++caseNum << ": ";
+	nodeElements.push_back(5);
+	nodeElements.push_back(4);
+	nodeElements.push_back(20);
+	nodeElements.push_back(7);
+	nodeElements.push_back(30);
+	nodeElements.push_back(23);
+	nodeElements.push_back(35);
+	nodeElements.push_back(26);
+	idxOfElmToDelete = 2;
+	idxOfSuccessor = 5;
+	delete_test(nodeElements, idxOfElmToDelete, idxOfSuccessor);
+	resetTestingParameters();
+}
+
 int main(int argc, char** argv){
 	// vector<vector<int>> arrays = readArrays(argv[1]);
 	// cout << "Num Testcases: " << arrays.size()<<"\n";
@@ -274,7 +427,8 @@ int main(int argc, char** argv){
 	// 	cout << "Case number: " <<  ++caseNum << "\n";
 	// 	testCase(*i);
 	// }
-	successor_test_cases();
+	// successor_test_cases();
+	delete_test_cases();
 	return 0;
 }
 
