@@ -4,11 +4,13 @@
 struct heap{
 	int heap_size;
 	int length;
-	const int* elms;
+	int* elms;
 };
 int leftChild(int i, int* elms, int heapSize);
 int rightChild(int i, int* elms, int heapSize);
-heap initHeap(int length, const int *elms);
+heap initHeap(int length, int *elms);
 bool verifyMaxHeap(heap A);
 bool verifyMinHeap(heap A);
+void max_heapify(heap A, int i);
+void min_heapify(heap A, int i);
 #endif
