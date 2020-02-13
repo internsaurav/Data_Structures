@@ -6,11 +6,11 @@
 	 	<li>Binary Tree</li>
 	 	<li>Complete Binary Tree (All levels filled except last level. Last level has to be filed from left to right)</li>
 	 </ul>
-	Since this is a complete binary tree, the elements can be stored in an array in a contiguous manner. For any node <i>x</i> present at index <i>i</i>,
-	<ul>
-		<li><i>x</i><sub>left-child</sub> will be found at index <i>2*i</i>, if present.</li>
-		<li><i>x</i><sub>right-child</sub> will be found at index <i>2*i+1</i>, if present.</li>
-		</ul>	
+		Since this is a complete binary tree, the elements can be stored in an array in a contiguous manner. For any node <i>x</i> present at index <i>i</i>,
+		<ul>
+			<li><i>x</i><sub>left-child</sub> will be found at index <i>2*i</i>, if present.</li>
+			<li><i>x</i><sub>right-child</sub> will be found at index <i>2*i+1</i>, if present.</li>
+			</ul>	
 	</span>
 	<span>
 		<figure>
@@ -45,10 +45,12 @@
 
 </div>
 
-<!-- <div><h3>Operations and Running-time:</h3>
-	<div><h4>In-order tree traversal: </h4>
-	Prints out the elements in a sorted order. Runs in Linear time.</div>
-	<div><h4>Querying for a node: </h4>
+<div><h3>Operations and Running-time:</h3>
+	<div><h4>Max-Heapify: </h4>
+	Floats a specific element downwards(away from root) so that max-heap property is restored. It is assumed that the subtrees rooted at this position are max-heaps. Runs in O(height). In worst case, an element will traverse from root to the farthest leaf node.</div>
+	<div><h4>Min-Heapify: </h4>
+	Floats a specific element downwards(away from root) so that min-heap property is restored. It is assumed that the subtrees rooted at this position are min-heaps. Runs in O(height). In worst case, an element will traverse from root to the farthest leaf node.</div>
+	<!-- <div><h4>Querying for a node: </h4>
 	if key<sub>query</sub> &le; key<sub>root</sub>, then check key<sub>left-child-root</sub> else key<sub>right-child-root</sub>. The algorithm traverses the height of the tree hence runs in O(<i>h</i>) where <i>h</i> is the height of the tree.</div>
 	<div><h4>Minimum and Maximum node: </h4> From root, follow the left child pointers till a leaf node is reached. This finds minimum-node. Similary,
 	following the right child pointers till a leaf node is reached will find the maximum node. Both procedures run in O(<i>h</i>) where <i>h</i> is the height of the tree.</div>
@@ -96,6 +98,6 @@
 				</ol>
 			</p>
 		</div>
-	</div>
- -->
+	</div> -->
+
 </div>
